@@ -1,0 +1,30 @@
+server:
+  port: 8081
+
+logging.level:
+  de.lab.inventory: DEBUG
+  org.springframework: WARN
+
+# Spring configuration
+spring:
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        ddl-auto: validate
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+        default_schema: public
+    show-sql: true
+  # Flyway db db config
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    schemas: public
+  # Datasource
+  datasource:
+    url: jdbc:mysql://localhost:3306/db
+    username: root
+    password: root
