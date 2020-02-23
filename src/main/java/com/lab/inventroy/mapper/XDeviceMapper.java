@@ -9,7 +9,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface XDeviceMapper {
 
-
   XDeviceDto xDeviceEntityToXDeviceDto(XDeviceEntity xDevice);
 
   @Mapping(target = "hcp.id", source = "xDevice.hcpId")

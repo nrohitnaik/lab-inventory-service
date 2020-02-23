@@ -25,7 +25,7 @@ public class HcpService {
     List<HcpDto> hcps = hcpRepository.findAll()
                                      .stream()
                                      .map(
-                                         hcp -> hcpMapper.hcpToHcpDtop(hcp))
+                                         hcp -> hcpMapper.hcpToHcpDto(hcp))
                                      .collect(Collectors.toList());
 
     if (hcps.isEmpty()) {

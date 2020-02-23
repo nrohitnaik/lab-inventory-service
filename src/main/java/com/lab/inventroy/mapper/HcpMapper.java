@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface HcpMapper {
 
-  HcpDto hcpToHcpDtop(HcpEntity hcp);
+  HcpDto hcpToHcpDto(HcpEntity hcp);
 
   @Mapping(target = "id", ignore = true)
   HcpEntity hcpToHcpEntity(Hcp hcp);

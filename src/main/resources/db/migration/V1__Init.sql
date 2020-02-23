@@ -1,9 +1,7 @@
-CREATE DATABASE IF NOT EXISTS `s4dx_db`;
-USE `s4dx_db`;
-
+CREATE SCHEMA IF NOT EXISTS `s4dx_db`;
 
 -- ************************************** "x_device"
-CREATE TABLE `x_device`
+CREATE TABLE `s4dx_db`.`x_device`
 (
     `id`             INT          NOT NULL AUTO_INCREMENT,
     `manufacture_id` VARCHAR(100),
@@ -12,7 +10,7 @@ CREATE TABLE `x_device`
     PRIMARY KEY (`id`)
 );
 -- ************************************** "hcp"
-CREATE TABLE `hcp`
+CREATE TABLE `s4dx_db`.`hcp`
 (
     `id`        INT(100) NOT NULL AUTO_INCREMENT,
     `hcp_id`    VARCHAR(100),
@@ -23,13 +21,13 @@ CREATE TABLE `hcp`
     PRIMARY KEY (`id`)
 );
 
-ALTER TABLE `x_device`
-    ADD CONSTRAINT `x_device_fk0` FOREIGN KEY (`hcp_id`) REFERENCES `hcp` (`id`);
+ALTER TABLE `s4dx_db`.`x_device`
+    ADD CONSTRAINT `x_device_fk0` FOREIGN KEY (`hcp_id`) REFERENCES `s4dx_db`.`hcp` (`id`);
 
 -- *************** Initial-Data ****************;
 
 
-INSERT INTO `hcp`
+INSERT INTO `s4dx_db`.`hcp`
 VALUES (18, 'Schäfer', 'Sredzkistr. 67', 'Berlin', '10405', 'Schäfer'),
        (19, 'Buschhaus', 'Prenzlauer Allee 217', 'Berlin', '10405', 'Buschhaus'),
        (20, 'Falsafi Amin', 'Kolmarer Str. 1', 'Berlin', '10405', 'Falsafi Amin'),
@@ -50,7 +48,7 @@ VALUES (18, 'Schäfer', 'Sredzkistr. 67', 'Berlin', '10405', 'Schäfer'),
        (35, '1', 'street', 'Berlin', '10405', '1');
 
 
-INSERT INTO `x_device`
+INSERT INTO `s4dx_db`.`x_device`
 VALUES (1, 'X1', 'ASSIGNED', 18),
        (2, 'X2', 'ASSIGNED', 19),
        (3, 'X3', 'ASSIGNED', 20),

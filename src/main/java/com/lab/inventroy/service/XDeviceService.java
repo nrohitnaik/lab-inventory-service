@@ -35,26 +35,17 @@ public class XDeviceService {
   }
 
   public void saveDevice(XDevice xDevice) {
-    checkIfHcpIdExists(xDevice);
+    updateHardwareState(xDevice);
     xDeviceRepository.save(xDeviceMapper.xDeviceToXDeviceEntity(xDevice));
   }
 
-  public void updateXdevice(long id, XDevice xDevice) {
-    checkIfHcpIdExists(xDevice);
+  public void updateXDevice(long id, XDevice xDevice) {
+    updateHardwareState(xDevice);
     XDeviceEntity xDeviceEntity = xDeviceMapper.xDeviceToXDeviceEntity(xDevice);
     xDeviceEntity.setId(id);
     xDeviceRepository.save(xDeviceEntity);
   }
-
-  private void checkIfHcpIdExists(XDevice xDevice) {
-    if (xDevice.getHcpId().isBlank()) {
-      xDevice.setHardwareState(HardwareState.UNASSIGNED);
-    } else {
-      xDevice.setHardwareState(HardwareState.ASSIGNED);
-    }
-  }
-
-  public void deleteXdDevice(long id) {
+  public void deleteXDevice(long id) {
     try {
       xDeviceRepository.delete(XDeviceEntity.builder()
                                             .id(id)
@@ -63,4 +54,13 @@ public class XDeviceService {
       throw new UnprocessableException("Error occurred while deleting X device with id " + id);
     }
   }
+
+  private void updateHardwareState(XDevice xDevice) {
+    if (xDevice.getHcpId().isBlank()) {
+      xDevice.setHardwareState(HardwareState.UNASSIGNED);
+    } else {
+      xDevice.setHardwareState(HardwareState.ASSIGNED);
+    }
+  }
+
 }

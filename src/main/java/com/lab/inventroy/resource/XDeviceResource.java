@@ -37,13 +37,13 @@ public class XDeviceResource {
   @PutMapping("/{id}")
   public ResponseEntity updateXDevice(@PathVariable("id") long id,
       @Valid @RequestBody XDevice xDevice) {
-    xDeviceService.updateXdevice(id, xDevice);
+    xDeviceService.updateXDevice(id, xDevice);
     return ResponseEntity.ok("updated successfully");
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity deleteXDevice(@PathVariable("id") long id) {
-    xDeviceService.deleteXdDevice(id);
+    xDeviceService.deleteXDevice(id);
     return ResponseEntity.ok("X device deleted with id " + id);
   }
 }
