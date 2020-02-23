@@ -1,6 +1,6 @@
 # S4DX Lab Inventory Service
 
-Lab Inventory Service is a REST api build using Spring boot 2.2.4.RELEASE and Java 11.
+Lab Inventory Service is a REST api built using Spring boot 2.2.4.RELEASE and Java 11.
  * [Rohit Naik] -Author 
  * [git-repo-url] - Source Code
 
@@ -23,6 +23,18 @@ Lab Inventory Service uses a number of open source projects to work properly:
 * [Maven] - Project management and build.
 * [Map Struct] - Code generator for mapping java beans.
 
+
+
+### Plugins
+
+The application uses the following plugins:
+
+| Plugin | Description | 
+| ------ | ------ |
+| [PMD] | Source code analyzer. |
+| [Spot bugs] | Static analysis to check bugs in Java code. |
+
+
 ### DB Design
 
 ![Database design](db-design.png)
@@ -38,17 +50,6 @@ $ cd lab-inventory-service
 $ mvn install
 $ java -jar target/lab-inventory-service-0.0.1-SNAPSHOT.jar
 ```
-
-
-### Plugins
-
-The application uses following plugins:
-
-| Plugin | Description | 
-| ------ | ------ |
-| [PMD] | Source code analyzer. |
-| [Spot bugs] | Static analysis to check bugs in Java code. |
-
 
 * By default, the application runs using application-dev.properties, exposed at port 8081. 
 * The application Swagger UI can be accessed using http://localhost:8081/swagger-ui.html which provides API documentation as well.
