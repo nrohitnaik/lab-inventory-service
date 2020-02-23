@@ -16,15 +16,15 @@ spring:
         ddl-auto: validate
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
-        default_schema: public
+        default_schema: s4dx_db
     show-sql: true
   # Flyway db db config
   flyway:
     baseline-on-migrate: true
     enabled: true
-    schemas: public
+    schemas: s4dx_db
   # Datasource
   datasource:
-    url: jdbc:mysql://localhost:3306/db
+    url: jdbc:mysql://localhost:3306/s4dx_db
     username: root
     password: root
