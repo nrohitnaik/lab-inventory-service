@@ -1,7 +1,11 @@
 package com.lab.inventroy.entity;
 
 
+import com.lab.inventroy.domain.HardwareState;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,19 +17,24 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "xdevices")
+@Entity(name = "x_device")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class XDevice {
+public class XDeviceEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  private String manufacturerId;
-  @JoinColumn(name = "hcps.id")
+
+  @JoinColumn(name = "hcp.id")
   @OneToOne
-  private Hcp hcp;
-  private String hardwareState;
+  private HcpEntity hcp;
+
+  @Column(unique = true)
+  private String manufactureId;
+
+  @Enumerated(EnumType.STRING)
+  private HardwareState hardwareState;
 }

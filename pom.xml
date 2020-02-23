@@ -17,10 +17,10 @@
   <description>Service for inventory management</description>
 
   <properties>
-    <java.version>1.8</java.version>
+    <java.version>11</java.version>
     <h2database.version>1.4.200</h2database.version>
     <mapstruct.version>1.3.1.Final</mapstruct.version>
-    <springfox-swagger-ui.version>2.0.2</springfox-swagger-ui.version>
+    <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
     <flyway-core.version>6.0.7</flyway-core.version>
     <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
     <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
@@ -45,8 +45,10 @@
       <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>${h2database.version}</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -104,7 +106,7 @@
             <exclude>**/*Configuration.*</exclude>
             <exclude>**/*Properties.*</exclude>
             <exclude>**/*Properties$*.*</exclude>
-            <exclude>**/resource/HelloLabInventoryServiceApplication.*</exclude>
+            <exclude>**/resource/LabInventoryServiceApplication.*</exclude>
           </excludes>
         </configuration>
         <executions>

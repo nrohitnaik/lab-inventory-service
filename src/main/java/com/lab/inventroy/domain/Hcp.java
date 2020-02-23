@@ -1,31 +1,27 @@
-package com.lab.inventroy.entity;
+package com.lab.inventroy.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "hcps")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder
 public class Hcp {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
-  @Column(unique = true)
+  @NotEmpty
   private String hcpId;
+  @NotEmpty
   private String street;
+  @NotEmpty
   private String city;
+  @NotEmpty
   private String cityCode;
+  @NotEmpty
   private String name;
 
 }
