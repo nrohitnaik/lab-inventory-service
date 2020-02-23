@@ -13,5 +13,4 @@ public interface HcpMapper {
 
   @Mapping(target = "id", ignore = true)
   HcpEntity hcpToHcpEntity(Hcp hcp);
-
 }

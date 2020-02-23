@@ -1,6 +1,5 @@
 package com.lab.inventroy.dto;
 
-import javax.persistence.Column;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

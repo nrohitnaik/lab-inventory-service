@@ -3,6 +3,7 @@ package com.lab.inventroy.service;
 import com.lab.inventroy.domain.HardwareState;
 import com.lab.inventroy.domain.XDevice;
 import com.lab.inventroy.dto.XDeviceDto;
+import com.lab.inventroy.entity.HcpEntity;
 import com.lab.inventroy.entity.XDeviceEntity;
 import com.lab.inventroy.exception.NotFoundException;
 import com.lab.inventroy.exception.UnprocessableException;
@@ -35,16 +36,22 @@ public class XDeviceService {
   }
 
   public void saveDevice(XDevice xDevice) {
-    updateHardwareState(xDevice);
-    xDeviceRepository.save(xDeviceMapper.xDeviceToXDeviceEntity(xDevice));
+    xDeviceRepository.save(XDeviceEntity.builder()
+                                        .hardwareState(updateHardwareState(xDevice.getHcpId()))
+                                        .manufactureId(xDevice.getManufactureId())
+                                        .hcp(buildHcpEntity(xDevice.getHcpId()))
+                                        .build());
   }
 
   public void updateXDevice(long id, XDevice xDevice) {
-    updateHardwareState(xDevice);
-    XDeviceEntity xDeviceEntity = xDeviceMapper.xDeviceToXDeviceEntity(xDevice);
-    xDeviceEntity.setId(id);
-    xDeviceRepository.save(xDeviceEntity);
+    xDeviceRepository.save(XDeviceEntity.builder()
+                                        .id(id)
+                                        .hcp(buildHcpEntity(xDevice.getHcpId()))
+                                        .manufactureId(xDevice.getManufactureId())
+                                        .hardwareState(updateHardwareState(xDevice.getHcpId()))
+                                        .build());
   }
+
   public void deleteXDevice(long id) {
     try {
       xDeviceRepository.delete(XDeviceEntity.builder()
@@ -55,12 +62,23 @@ public class XDeviceService {
     }
   }
 
-  private void updateHardwareState(XDevice xDevice) {
-    if (xDevice.getHcpId().isBlank()) {
-      xDevice.setHardwareState(HardwareState.UNASSIGNED);
+  private HardwareState updateHardwareState(String hcpId) {
+    if (hcpId == null || hcpId
+        .isBlank()) {
+
+      return HardwareState.UNASSIGNED;
     } else {
-      xDevice.setHardwareState(HardwareState.ASSIGNED);
+      return HardwareState.ASSIGNED;
     }
+  }
+
+  private HcpEntity buildHcpEntity(String hcpId) {
+    if (hcpId == null || hcpId.isBlank()) {
+      return null;
+    }
+    return HcpEntity.builder()
+                    .id(Long.parseLong(hcpId))
+                    .build();
   }
 
 }
