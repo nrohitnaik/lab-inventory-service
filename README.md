@@ -23,6 +23,10 @@ Lab Inventory Service uses a number of open source projects to work properly:
 * [Maven] - Project management and build.
 * [Map Struct] - Code generator for mapping java beans.
 
+### DB Design
+
+![Database design](db-design.png)
+
 ### Running the application
 
 This application requires [Java 11] to run.
